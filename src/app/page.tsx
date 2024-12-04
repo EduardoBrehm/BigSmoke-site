@@ -2,8 +2,10 @@ import HeroCarousel from '@/components/HeroCarousel'
 import CategoryGrid from '@/components/CategoryGrid'
 import ProductGrid from '@/components/ProductGrid'
 import Benefits from '@/components/Benefits'
+import NewsletterSection from '@/components/NewsletterSection'
+import Container from '@/components/Container'
 
-const mockProducts = [
+const featuredProducts = [
   {
     id: 1,
     name: 'Dichavador Be Safe',
@@ -34,22 +36,56 @@ const mockProducts = [
     image: 'piteira-vidro.png',
     category: 'Piteira',
   },
+  {
+    id: 5,
+    name: 'Isqueiro Clipper',
+    price: 15.90,
+    image: 'clipper.png',
+    category: 'Isqueiro',
+    discount: 5,
+  },
 ]
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen">
       {/* Hero Section */}
       <HeroCarousel />
 
-      {/* Benefits */}
-      <Benefits />
+      {/* Benefits Section */}
+      <Benefits backgroundColor="bg-white" />
 
-      {/* Category Grid */}
-      <CategoryGrid />
+      {/* Categories Section */}
+      <section className="bg-gray-50">
+        <Container>
+          <div className="py-16">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900">Categorias</h2>
+              <p className="mt-2 text-gray-600">Explore nossos produtos por categoria</p>
+            </div>
+            <CategoryGrid />
+          </div>
+        </Container>
+      </section>
 
-      {/* Featured Products */}
-      <ProductGrid title="Produtos em Destaque" products={mockProducts} />
+      {/* Featured Products Section */}
+      <section className="bg-white">
+        <Container>
+          <div className="py-16">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900">Produtos em Destaque</h2>
+              <p className="mt-2 text-gray-600">Confira nossa seleção especial</p>
+            </div>
+            <ProductGrid 
+              products={featuredProducts} 
+              compact={true}
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Newsletter Section */}
+      <NewsletterSection />
     </main>
   )
 }

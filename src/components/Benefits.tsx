@@ -1,15 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { TruckIcon, ShieldCheckIcon, CreditCardIcon } from '@heroicons/react/24/outline'
-
-type Benefit = {
-  id: number
-  title: string
-  description: string
-  icon: string
-  theme: string
-}
+import Container from './Container'
 
 type BenefitsProps = {
   backgroundColor?: string
@@ -18,73 +10,52 @@ type BenefitsProps = {
   iconColor?: string
 }
 
+const defaultBenefits = [
+  {
+    id: 1,
+    title: 'Entrega Rápida',
+    description: 'Entrega em todo o Brasil',
+    icon: 'truck',
+  },
+  {
+    id: 2,
+    title: 'Pagamento Seguro',
+    description: 'Diversas formas de pagamento',
+    icon: 'credit-card',
+  },
+  {
+    id: 3,
+    title: 'Compra Garantida',
+    description: 'Satisfação garantida ou seu dinheiro de volta',
+    icon: 'shield-check',
+  },
+]
+
 const iconMap = {
   truck: TruckIcon,
   'credit-card': CreditCardIcon,
   'shield-check': ShieldCheckIcon,
 }
 
-const Benefits = ({
-  backgroundColor = 'bg-white',
+export default function Benefits({
+  backgroundColor = 'bg-gray-50',
   textColor = 'text-gray-900',
   hoverColor = 'hover:bg-gray-100',
   iconColor = 'text-green-600',
-}: BenefitsProps) => {
-  const [benefits, setBenefits] = useState<Benefit[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchBenefits = async () => {
-      try {
-        const response = await fetch('/api/benefits')
-        const data = await response.json()
-        setBenefits(data)
-      } catch (error) {
-        console.error('Error fetching benefits:', error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchBenefits()
-  }, [])
-
-  if (isLoading) {
-    return (
-      <section className={`py-12 ${backgroundColor}`}>
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((index) => (
-              <div
-                key={index}
-                className="animate-pulse flex items-center space-x-4 p-6 rounded-lg bg-gray-100"
-              >
-                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gray-200" />
-                <div className="flex-1">
-                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
-                  <div className="h-3 bg-gray-200 rounded w-1/2" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
+}: BenefitsProps) {
   return (
-    <section className={`py-12 ${backgroundColor}`}>
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {benefits.map((benefit) => {
+    <div className={backgroundColor}>
+      <Container>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12">
+          {defaultBenefits.map((benefit) => {
             const Icon = iconMap[benefit.icon as keyof typeof iconMap]
             return (
               <div
                 key={benefit.id}
                 className={`
-                  flex items-center space-x-4 p-6 rounded-lg bg-gray-50 
+                  flex items-center space-x-4 p-6 rounded-lg bg-white
                   ${hoverColor} transition-all duration-300 ease-in-out
-                  transform hover:scale-105 hover:shadow-lg
+                  shadow-sm hover:shadow-lg
                 `}
               >
                 <div className="flex-shrink-0">
@@ -102,9 +73,7 @@ const Benefits = ({
             )
           })}
         </div>
-      </div>
-    </section>
+      </Container>
+    </div>
   )
 }
-
-export default Benefits

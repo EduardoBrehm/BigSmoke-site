@@ -12,18 +12,27 @@ interface Product {
 }
 
 interface ProductGridProps {
-  title: string
   products: Product[]
+  title?: string
+  compact?: boolean
 }
 
-const ProductGrid = ({ title, products }: ProductGridProps) => {
+const ProductGrid = ({ products, title, compact = false }: ProductGridProps) => {
+  if (products.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-gray-500 text-lg">Nenhum produto encontrado</p>
+      </div>
+    )
+  }
+
   return (
-    <section className="py-12 bg-gray-50">
+    <section className={compact ? 'py-8' : 'py-16'}>
       <div className="container-custom">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-          {title}
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {title && (
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">{title}</h2>
+        )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (
             <ProductCard
               key={product.id}
@@ -33,6 +42,7 @@ const ProductGrid = ({ title, products }: ProductGridProps) => {
               image={product.image}
               discount={product.discount}
               category={product.category}
+              compact={compact}
             />
           ))}
         </div>
