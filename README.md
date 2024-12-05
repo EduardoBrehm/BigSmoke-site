@@ -1,4 +1,4 @@
-# PopPipe E-commerce
+# BigSmoke E-commerce
 
 Um e-commerce moderno construído com Next.js, TypeScript e Tailwind CSS.
 
