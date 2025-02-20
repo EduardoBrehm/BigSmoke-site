@@ -9,6 +9,7 @@ import PlaceholderImage from './PlaceholderImage'
 const navigation = [
   { name: 'Início', href: '/' },
   { name: 'Produtos', href: '/produtos' },
+  { name: 'Monte seu Kit', href: '/monte-seu-kit' },
   { name: 'Sobre', href: '/sobre' },
   { name: 'Contato', href: '/contato' },
 ]

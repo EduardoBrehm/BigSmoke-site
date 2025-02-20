@@ -23,9 +23,9 @@ const slides = [
   },
   {
     id: 3,
-    title: 'Kits Promocionais',
-    description: 'Monte seu kit e ganhe desconto',
-    link: '/kits',
+    title: 'Monte Seu Kit',
+    description: 'Monte seu kit personalizado com desconto especial',
+    link: '/monte-seu-kit',
     image: '/images/hero/slide3.jpg',
   },
 ]

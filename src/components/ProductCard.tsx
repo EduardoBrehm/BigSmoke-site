@@ -32,8 +32,18 @@ const ProductCard = ({
     category === 'Piteira' ? '#F472B6' :
     '#22C55E'
 
+  const slugify = (text: string) => {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+  }
+
   return (
-    <Link href={`/produto/${id}`} className="group block h-full">
+    <Link href={`/produtos/${slugify(name)}`} className="group block h-full">
       <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
         <div className="relative aspect-[4/3]">
           <PlaceholderImage
