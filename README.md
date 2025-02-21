@@ -3,7 +3,7 @@
 Um e-commerce moderno construído com Next.js, TypeScript e Tailwind CSS.
 
 ## Descrição
-PopPipe é uma loja online especializada em artigos para tabacaria, oferecendo uma experiência de compra moderna e intuitiva.
+BigSmoke é uma loja online especializada em artigos para tabacaria, oferecendo uma experiência de compra moderna e intuitiva.
 
 ## Características
 
